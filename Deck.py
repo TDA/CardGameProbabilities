@@ -11,13 +11,18 @@ class Deck:
     def calcProbabOfCard (self, cardName):
         try:
             card, suit = cardName.split(" ")
-            if (suit in (suit.lower() for suit in self.suits) and
-                (int(card) in self.normalCards) or (card  in (card.lower() for card in self.highCards))):
-                return 1.0 / self.totalCards
+            suit = suit.lower()
+            if (suit in (suit.lower() for suit in self.suits)):
+                if isinstance(card, int) and int(card) in self.normalCards:
+                    return 1.0 / self.totalCards
+                else:
+                    if (card  in (card.lower() for card in self.highCards)):
+                        return 1.0 / self.totalCards
             else:
                 return -1
         except:
             print "Enter a valid card"
+
     def displayDeck(self):
         for suit in self.suits:
             for card in self.normalCards:
@@ -27,4 +32,5 @@ class Deck:
 
 deck = Deck()
 x = deck.calcProbabOfCard("8 hearts")
-print x
+y = deck.calcProbabOfCard("7 spades")
+print x , y
