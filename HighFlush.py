@@ -1,3 +1,7 @@
 __author__ = 'saipc'
+from Deck import Deck
 
-# deck.displayDeck()
+
+if __name__ == '__main__':
+    deck = Deck()
+    deck.displayDeck()

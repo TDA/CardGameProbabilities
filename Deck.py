@@ -16,13 +16,14 @@ class Deck:
         try:
             card, suit = cardName.split(" ")
             suit = suit.lower()
+            tempCard = card
             if (suit in (suit.lower() for suit in self.suits)):
                 # see if the card is a number or a face card,
                 # and continue searching for it appropriately
                 try:
                     card = int(card)
                 except:
-                    card = card
+                    card = tempCard.lower()
                 # was card a number?
                 if isinstance(card, int) and card in self.normalCards:
                     return 1.0 / self.totalCards
@@ -36,16 +37,32 @@ class Deck:
 
     def displayDeck(self):
         for suit in self.suits:
-            for card in self.normalCards:
-                print str(card) + " " + suit
-            for card in self.highCards:
-                print str(card) + " " + suit
+            print '{'
+            print suit + ' : '
+            print ','.join([str(card) for card in self.normalCards + self.highCards])
+            print '}'
 
-deck = Deck()
-x = deck.calcProbabOfCard("8 hearts")
-y = deck.calcProbabOfCard("7 spades")
-print x , y
 
-halfdeck = Deck(("sai", "pc"))
-x = halfdeck.calcProbabOfCard("8 sai")
-print x
+if __name__ == '__main__':
+    deck = Deck()
+    x = deck.calcProbabOfCard("8 hearts")
+    y = deck.calcProbabOfCard("7 spades")
+    # print x , y
+
+    # customize the deck
+    halfdeck = Deck(("sai", "pc"),
+                    [x for x in xrange(2, 10, 1)],
+                    ("Ace", "King", "Queen", "Jack"),
+                    24
+                    )
+    x = halfdeck.calcProbabOfCard("Ace sai")
+    #print x
+
+    spanishDeck = Deck(("Hearts", "Clubs", "Diamonds", "Spades"),
+                    [x for x in xrange(2, 10, 1)],
+                    ("Ace", "King", "Queen", "Jack"),
+                    48
+                    )
+    x = spanishDeck.calcProbabOfCard("Ace Clubs")
+    print x
+    spanishDeck.displayDeck()
