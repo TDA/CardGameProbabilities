@@ -11,8 +11,11 @@ class Deck:
         # self.normalCards = ["Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten"]
         self.normalCards = normalCards
         self.highCards = list(highCards)
-        self.totalCards = totalCards
         self.hasJoker = hasJoker
+        self.totalCards = totalCards
+        self.cardsInASuit = len(self.normalCards + self.highCards) + (1 if self.hasJoker else 0)
+
+
 
     def calcProbability(self, needle, haystack):
         return needle / haystack
@@ -42,6 +45,7 @@ class Deck:
 
     def displayDeck(self):
         for suit in self.suits:
+            # looks complicated, but is actually doing nothing big
             print '{'
             print suit + ' : '
             print ','.join([str(card) for card in self.normalCards + self.highCards])
@@ -61,7 +65,7 @@ if __name__ == '__main__':
                     24
                     )
     x = halfdeck.calcProbabOfCard("Ace sai")
-    #print x
+    print x
 
     spanishDeck = Deck(("Hearts", "Clubs", "Diamonds", "Spades"),
                     [x for x in xrange(2, 10, 1)],
