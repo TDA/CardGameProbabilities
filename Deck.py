@@ -5,12 +5,14 @@ class Deck:
                  suits = ("Hearts", "Clubs", "Diamonds", "Spades"),
                  normalCards = [x for x in xrange(2, 11, 1)],
                  highCards = ("Ace", "King", "Queen", "Jack"),
-                 totalCards = 52):
+                 totalCards = 52.0,
+                 hasJoker = False):
         self.suits = list(suits)
         # self.normalCards = ["Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten"]
         self.normalCards = normalCards
         self.highCards = list(highCards)
         self.totalCards = totalCards
+        self.hasJoker = hasJoker
 
     def calcProbability(self, needle, haystack):
         return needle / haystack
