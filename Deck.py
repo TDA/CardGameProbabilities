@@ -12,6 +12,9 @@ class Deck:
         self.highCards = list(highCards)
         self.totalCards = totalCards
 
+    def calcProbability(self, needle, haystack):
+        return needle / haystack
+
     def calcProbabOfCard (self, cardName):
         try:
             card, suit = cardName.split(" ")
