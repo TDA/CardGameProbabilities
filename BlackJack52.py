@@ -7,7 +7,13 @@ from Deck import Deck
 if __name__ == '__main__':
     # no jokers in bj, so this is fine
     deck = Deck()
-
+    # prob of getting an Ace AND one of Jack or Queen or King or Ten
+    deck.calcProbabOfCard("Ace") * (
+                                    deck.calcProbabOfCard(10) +
+                                    deck.calcProbabOfCard("Jack") +
+                                    deck.calcProbabOfCard("Queen") +
+                                    deck.calcProbabOfCard("King")
+                                    )
     # Lets do one deck, easier to count,
     # and can replicate
     # We might need a separate card
