@@ -20,10 +20,15 @@ class Deck:
     def calcProbability(self, needle, haystack):
         return needle / haystack
 
-    def calcProbabOfCard (self, cardName):
+    def calcProbabOfCardInAllSuits (self, card):
+        return self.calcProbabOfCard(card, "hearts") * 4
+
+    def calcProbabOfCard (self, card, suit):
         try:
-            card, suit = cardName.split(" ")
+            if "" is suit:
+                suit = "Hearts"
             suit = suit.lower()
+
             tempCard = card
             if (suit in (suit.lower() for suit in self.suits)):
                 # see if the card is a number or a face card,
@@ -54,8 +59,8 @@ class Deck:
 
 if __name__ == '__main__':
     deck = Deck()
-    x = deck.calcProbabOfCard("8 hearts")
-    y = deck.calcProbabOfCard("7 spades")
+    x = deck.calcProbabOfCard("8", "hearts")
+    y = deck.calcProbabOfCard("7", "spades")
     # print x , y
 
     # customize the deck
@@ -64,7 +69,7 @@ if __name__ == '__main__':
                     ("Ace", "King", "Queen", "Jack"),
                     24
                     )
-    x = halfdeck.calcProbabOfCard("Ace sai")
+    x = halfdeck.calcProbabOfCard("Ace", "sai")
     print x
 
     spanishDeck = Deck(("Hearts", "Clubs", "Diamonds", "Spades"),
@@ -72,6 +77,6 @@ if __name__ == '__main__':
                     ("Ace", "King", "Queen", "Jack"),
                     48
                     )
-    x = spanishDeck.calcProbabOfCard("Ace Clubs")
+    x = spanishDeck.calcProbabOfCard("Ace", "")
     print x
     spanishDeck.displayDeck()
